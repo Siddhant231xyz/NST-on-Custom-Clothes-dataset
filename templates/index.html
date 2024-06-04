@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Artistry</title>
+    <style>
+        body {
+            background-image: url('{{ url_for("static", filename="download1.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #fff; /* Add white color for better contrast */
+        }
+
+        form {
+            text-align: center;
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 50px;
+            position: relative; /* Add relative positioning */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333; /* Maintain default text color */
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        #submit-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .loader {
+            display: none; /* Initially hidden */
+            position: absolute; /* Position loader absolutely */
+            top: 50%; /* Center vertically */
+            left: 50%; /* Center horizontally */
+            transform: translate(-50%, -50%); /* Center the loader */
+        }
+
+        .loading-gif {
+            width: 100%; /* Make the loader match the width of its container */
+            max-width: 40px; /* Set max-width to control size */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <h1>Fashion Artistry</h1>
+    <form action="/process" method="post" enctype="multipart/form-data" onsubmit="showLoader()">
+        <label for="sample_image">Sample Image:</label>
+        <input type="file" id="sample_image" name="sample_image" accept="image/*" required><br><br>
+        
+        <label for="style_image">Style Image:</label>
+        <input type="file" id="style_image" name="style_image" accept="image/*" required><br><br>
+        
+        <label for="iterations">Number of Iterations:</label>
+        <input type="number" id="iterations" name="iterations" value="100" min="1" required><br><br>
+        
+        <button id="submit-btn" type="submit">Process</button>
+        <div id="loader" class="loader">
+            <img src="{{ url_for('static', filename='load.gif') }}" alt="Loading GIF" class="loading-gif">
+        </div>
+    </form>
+
+    <script>
+        function showLoader() {
+            var formElement = document.querySelector('form');
+            var loaderElement = document.getElementById("loader");
+            
+            // Position the loader relative to the form element
+            loaderElement.style.top = (formElement.offsetTop + formElement.offsetHeight / 2 - loaderElement.offsetHeight / 2) + "px";
+            loaderElement.style.left = (formElement.offsetLeft + formElement.offsetWidth / 2 - loaderElement.offsetWidth / 2) + "px";
+            
+            // Hide the submit button and show the loader
+            document.getElementById("submit-btn").style.display = "none";
+            loaderElement.style.display = "block";
+}
+
+    </script>
+</body>
+</html>

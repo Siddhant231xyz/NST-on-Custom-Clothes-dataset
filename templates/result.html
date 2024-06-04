@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Transfer Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('{{ url_for("static", filename="download.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #fff; /* Adjusted text color for better contrast */
+            margin-bottom: 30px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px; /* Added margin for spacing */
+        }
+
+        #back-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove default link underline */
+        }
+    </style>
+</head>
+<body>
+    <h1>Style Transfer Result</h1>
+    <img src="{{ url_for('static', filename='images/output_image.jpg') }}" alt="Result Image">
+    <br>
+    <a href="/" id="back-btn">Go Back</a>
+</body>
+</html>
